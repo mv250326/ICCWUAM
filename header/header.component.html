@@ -1,0 +1,41 @@
+<mat-toolbar>
+    <button mat-icon-button  (click)="isExpanded = !isExpanded">
+        <mat-icon class="icon-display">menu</mat-icon>
+    </button>    
+    <span style="font-size:30px;padding-left: 2%;">NCR</span>
+    <span class="toolbar-spacer"></span>
+    <span>User</span>
+    <mat-icon>verified_user</mat-icon>
+    
+</mat-toolbar>
+<mat-sidenav-container class="example-container" autosize >
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon>dashboard</mat-icon>
+                <span *ngIf="isExpanded" class="text-icon">Dashboard</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>supervised_user_circle</mat-icon>
+                <span *ngIf="isExpanded" class="text-icon">Users</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>ballot</mat-icon>
+                <span *ngIf="isExpanded" class="text-icon">Inventory</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>mail</mat-icon>
+                <span *ngIf="isExpanded" class="text-icon">Reports</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>info</mat-icon>
+                <span *ngIf="isExpanded" class="text-icon">About</span>
+            </mat-list-item>
+        </mat-nav-list>
+        
+      
+    </mat-sidenav>
+ 
+    
+  
+</mat-sidenav-container>

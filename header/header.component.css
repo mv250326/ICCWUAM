@@ -1,0 +1,29 @@
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+
+  }
+  
+.example-sidenav {
+  padding: 1%;
+  background-color: rgb(52, 51, 51);
+  }
+
+.text-icon{
+  padding-left: 30px; 
+  font-size: 20px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.icon-display {
+  transform: scale(1.5);
+}
