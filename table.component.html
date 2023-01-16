@@ -1,0 +1,91 @@
+<mat-card class="card">
+  <mat-toolbar>
+    <span>USERS LIST</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-raised-button color="primary" routerLink="/">Create User</button>
+  </mat-toolbar>
+  <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Abc" #input>
+  </mat-form-field>
+  
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let user; index as i"> {{i+1}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.pname}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="number">
+    <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.pnum}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="company">
+    <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.pcomp}} </mat-cell>
+  </ng-container>
+
+        <!--Buttons-->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+              <button mat-mini-fab matTooltip="Approve" color="primary" class="btn-display">
+                  <mat-icon>done</mat-icon> 
+              </button>
+              
+              <button mat-mini-fab matTooltip="Reject" color="warn" class="btn-display">
+                  <mat-icon>close</mat-icon> 
+              </button>
+              
+              <button mat-mini-fab matTooltip="Edit" color="primary" class="btn-display" routerLink="/">
+                  <mat-icon>edit</mat-icon> 
+              </button>
+              
+              <button mat-mini-fab matTooltip="Delete" color="primary" class="btn-display" (click)="onDeleteUser(row.id)">
+                  <mat-icon>delete</mat-icon> 
+              </button>
+              <button mat-raised-button color="primary" routerLink="/">View</button>
+            </mat-cell>
+        </ng-container>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4"><span style="color: white;">No data matching the filter "{{input.value}}"</span></td>
+        </tr>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10, 25, 50]" aria-label="Select page of users" showFirstLastButtons></mat-paginator>
+
+</mat-card>
