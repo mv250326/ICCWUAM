@@ -11,7 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {MatIconModule} from '@angular/material/icon';
 
-# Users
+# Table (User List)
 Material imports for this file
 
 import {MatToolbarModule} from '@angular/material/toolbar';
